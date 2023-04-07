@@ -56,5 +56,11 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 source 'https://rubygems.org'
- 
+
 gem 'devise'
+
+gem 'devise-i18n'
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'rails-i18n'
+gem 'pry-rails'

@@ -64,3 +64,12 @@ gem 'devise-i18n'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'rails-i18n'
 gem 'pry-rails'
+
+gem 'sprockets', '~> 4.0'
+gem 'bootstrap', '~> 5.3.0.alpha3'
+gem "bootstrap4-datetime-picker-rails"
+gem 'momentjs-rails'
+gem "font-awesome-rails"
+gem 'jquery-rails'
+gem 'jquery-datetimepicker-rails'
+gem 'bootstrap-sass'

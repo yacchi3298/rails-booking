@@ -5,27 +5,40 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <header>
-      <nav>
-          <% if user_signed_in? %>
-            <h2> 現在 <%= current_user.name %> さんがログインしています </h2>
 
-            <%= link_to 'プロフィール変更', edit_user_registration_path %>
-            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-          <% else %>
-            <%= link_to 'サインアップ', new_user_registration_path %>
-            <%= link_to 'ログイン', new_user_session_path %>
-          <% end %>
+    <header>
+      <nav class="navbar navbar-dark" style="background-color:#003399;">
+        <div class="container-fluid">
+          <a href="/" class="navbar-brand">Booking</a>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <% if user_signed_in? %>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <%= current_user.name %>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                  <li><%= link_to "アカウント", user_path(current_user) ,class: "dropdown-item"%></li>
+                  <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete ,class: "dropdown-item"%></li>
+                  <li><a class="dropdown-item" href="#">Something</a></li>
+                </ul>
+              </div>
+            <% else %>
+              <%= link_to "サインアップ", new_user_registration_path, type: "button",class: "btn btn-secondary btn-sm" %>
+              <%= link_to "ログイン", new_user_session_path, type: "button",class: "btn btn-success btn-sm" %>
+            <% end %>
+          </div>
+        </div>
       </nav>
     </header>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+
+
+      <%= yield %>
+
+
   </body>
 </html>

@@ -1,0 +1,5 @@
+<h2>投稿一覧</h2>
+<% @rooms.each do |room| %>
+    <hr>
+    <p><span>投稿内容: </span><%=link_to room.name, room_path(room.id) %></p>
+<% end %>

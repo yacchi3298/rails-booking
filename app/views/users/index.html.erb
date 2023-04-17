@@ -10,27 +10,4 @@
 </ul>
 <h3>投稿一覧</h3>
 
-  <table>
-    <thead>
-      <tr>
-        <th>投稿内容</th>
-        <th>更新日時</th>
-        <th>投稿日時</th>
-        <th>投稿者(User_id)</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @rooms.each do |room| %>
-        <tr>
-          <td><%= room.content %></td>
-          <td><%= room.updated_at.to_s(:datetime_jp) %></td>
-          <td><%= room.created_at.to_s(:datetime_jp) %></td>
-          <td><%= room.user_id %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-
   <%= link_to 'サインアップ', new_user_registration_path %>

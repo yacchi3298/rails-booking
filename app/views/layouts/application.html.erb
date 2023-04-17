@@ -17,6 +17,14 @@
           <a href="/" class="navbar-brand">Booking</a>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <% if user_signed_in? %>
+              <div class="icon">
+                <!-- ↓インスタンス変数でエラー出る。アクション全てでの定義が必要 -->
+                <% if current_user.icon? %>
+                    <%= image_tag current_user.icon.thumb.url , class: "user-icon" %>
+                <% else %>
+                    <%= image_tag("default-icon.png", width: 40) %>
+                <% end %>
+              </div>
               <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                   <%= current_user.name %>

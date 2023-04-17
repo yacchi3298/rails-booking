@@ -2,6 +2,14 @@
 
 
 <p>名前 : <%= @user.name %></p>
+
+<p>プロフィール写真:
+<% if @user.icon? %>
+    <%= image_tag @user.icon.url , class: "user-icon"%>
+<% else %>
+    <%= image_tag("default-icon.png") %>
+<% end %>
+</p>
 <p>メールアドレス : <%= @user.email %></p>
 <p>プロフィール : <%= @user.profile %></p>
 <p>パスワード : *********</p>

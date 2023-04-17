@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name]) # 新規登録時(sign_up時)にnameというキーのパラメーターを追加で許可する
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :profile]) # 情報更新時にnameの取得を許可
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :profile, :icon ,:remove_icon]) # 情報更新時にnameの取得を許可
     end
 
 
@@ -19,4 +19,4 @@ class ApplicationController < ActionController::Base
         def sign_in_required
             redirect_to new_user_session_url unless user_signed_in?
         end
-end
+  end

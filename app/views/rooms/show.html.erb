@@ -1,5 +1,9 @@
 <h2>部屋詳細</h2>
 <%= notice %>
+
+<p>施設写真: <%= image_tag @room.image.url %></p>
+
+
 <p>施設名: <%= @room.name %></p>
 <p>施設詳細: <%= @room.introduction %></p>
 <p>料金: <%= @room.priice %></p>

@@ -6,9 +6,12 @@ Rails.application.routes.draw do
   }
   root 'home#top'
 
-  resources :users, only: [:index,:show,] do
+  resources :users, only: [:index,:show,:update] do
     member do
       get 'own'
+      get 'profile'
+      get 'profile_edit'
+
     end
   end
   resources :rooms

@@ -32,7 +32,7 @@
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                   <li><%= link_to "アカウント", user_path(current_user) ,class: "dropdown-item"%></li>
                   <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete ,class: "dropdown-item"%></li>
-                  <li><a class="dropdown-item" href="#">Something</a></li>
+                  <li><%= link_to "施設登録", new_room_path,class: "dropdown-item"%></li>
                 </ul>
               </div>
             <% else %>

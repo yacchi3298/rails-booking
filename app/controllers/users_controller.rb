@@ -41,6 +41,7 @@ class UsersController < ApplicationController
         :icon,
         :name,
         :profile,
+        :remove_icon
       )
     end
 end

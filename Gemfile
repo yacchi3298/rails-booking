@@ -56,5 +56,26 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 source 'https://rubygems.org'
- 
+
 gem 'devise'
+
+gem 'devise-i18n'
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'rails-i18n'
+gem 'pry-rails'
+
+gem 'sprockets', '~> 4.0'
+gem 'bootstrap', '~> 5.3.0.alpha3'
+gem "bootstrap4-datetime-picker-rails"
+gem 'momentjs-rails'
+gem "font-awesome-rails"
+gem 'jquery-rails'
+gem 'jquery-datetimepicker-rails'
+gem 'bootstrap-sass'
+
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'rmagick'
+
+gem 'ransack'

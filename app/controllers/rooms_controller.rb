@@ -1,6 +1,7 @@
 class RoomsController < ApplicationController
   def index
-    @rooms = Room.all
+    @q = Room.ransack(params[:q])
+    @rooms = @q.result(distinct: true)
   end
 
   def new
@@ -20,17 +21,38 @@ class RoomsController < ApplicationController
   end
 
   def show
+    @q = Room.ransack(params[:q])
+    @rooms = @q.result(distinct: true)
     @room = Room.find(params[:id])
     @user = @room.user
+    @reservation=Reservation.new
   end
 
   def edit
+    @room = Room.find(params[:id])
   end
 
   def update
+    @room = Room.find(params[:id])
+    if @room.update(room_params)
+      flash[:notice] = "投稿しました"
+      redirect_to @room
+    else
+      flash.now[:alert] = "投稿に失敗しました"
+      render :edit , status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @room = Room.find(params[:id])
+      @room.destroy
+      flash[:notice] = "ユーザーを削除しました"
+      redirect_back(fallback_location: root_path)
+  end
+
+  def own
+    @user = User.find(params[:id])
+    @rooms = @user.rooms
   end
 
   private

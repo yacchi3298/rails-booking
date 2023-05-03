@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'reservations/index'
   # ログイン、アカウント編集後、任意のページに推移させるための記述
   devise_for :users, controllers: {
     registrations: 'users/registrations'
@@ -8,13 +9,22 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index,:show,:update] do
     member do
-      get 'own'
       get 'profile'
       get 'profile_edit'
 
     end
   end
-  resources :rooms
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :rooms do
+    member do
+      get 'own'
+    end
+  end
+
+  resources :reservations do
+    member do
+      post 'confirm'
+      get 'confirm'
+    end
+  end
 
 end

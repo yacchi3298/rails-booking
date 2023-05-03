@@ -1,43 +1,54 @@
-<section class="container OwnRoomsContainer">
-    <h2>登録済み一覧</h2>
+<div class="container ReservationsContainer">
+    <h2>予約済み一覧</h2>
 
     <div class="table-responsive">
-        <table class="table align-middle OwnRoomsTable">
+        <table class="table align-middle ReservationsTable">
             <thead>
                 <tr>
                     <th>画像</th>
                     <th>施設名</th>
-                    <th>施設詳細</th>
-                    <th>料金</th>
-                    <th>作成日</th>
+                    <th>紹介文</th>
+                    <th class="text-nowrap">合計料金</th>
+                    <th class="text-nowrap">チェックイン</th>
+                    <th class="text-nowrap">チェックアウト</th>
+                    <th class="text-nowrap">予約確定日時</th>
                     <th></th>
                 </tr>
             </thead>
 
             <tbody>
-                <% @rooms.each do |room| %>
+                <% @reservations.each do |reservation| %>
                     <tr>
                         <td>
-                            <%= image_tag room.image.url ,class:"RoomDetails__image"%>
+                            <%= image_tag reservation.room.image.url ,class:"RoomDetails__image"%>
                         </td>
 
                         <td>
-                            <%=link_to room.name, room_path(room.id) %>
+                            <%=link_to reservation.room.name, room_path(reservation.room.id) %>
                         </td>
 
                         <td>
-                            <%= room.introduction %>
+                            <%= reservation.room.introduction %>
                         </td>
 
                         <td class="text-nowrap">
-                            <p>¥<%= room.priice %>/日</p>
+                            ¥<%= (reservation.checkout.to_date-reservation.checkin.to_date).to_i  * reservation.room.priice * reservation.Number_of_people%>
                         </td>
 
                         <td class="text-nowrap">
-                            <%=l room.updated_at.to_date %>
+                            <%=l reservation.checkin.to_date %>
+                        </td>
+
+                        <td class="text-nowrap">
+                            <%=l reservation.checkout.to_date %>
+                        </td>
+
+                        <td class="text-nowrap">
+                            <%=l reservation.created_at %>
                         </td>
 
                         <td>
+
                             <div class="dropdown">
                                 <div class="d-flex align-items-center justify-content-center" id="dropdown-button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <%= image_tag "kebab.jpg", alt: "Rails icon", id: "assets", class: "image", width: "20px" %>
@@ -45,18 +56,18 @@
 
                                 <ul class="dropdown-menu DropdownMenu" aria-labelledby="dropdown-button">
                                     <li class="DropdownMenu__item">
-                                        <%= link_to "編集",edit_room_path(room) %>
+                                        <%= link_to "再予約",room_path(reservation.room.id) %>
                                     </li>
 
                                     <li class="DropdownMenu__item DropdownMenu__item--danger">
-                                        <%= link_to "削除", room, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+                                        <%= link_to "削除", reservation, method: :delete, data: { confirm: "本当に削除しますか？" } %>
                                     </li>
                                 </ul>
                             </div>
                         </td>
                     </tr>
-                <% end %>
+                <%end%>
             </tbody>
         </table>
     </div>
-</section>
+</div>

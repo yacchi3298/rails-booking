@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   #roomモデルに関連付け
   has_many :rooms, dependent: :destroy
-
+  has_many :reservations, dependent: :destroy
+  #画像アップロード用
   mount_uploader :icon, IconUploader
 end
